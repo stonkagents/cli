@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://docs.stonkagents.com
+    about: Setup guides, CLI reference and troubleshooting.
+  - name: Security report
+    url: https://github.com/stonkagents/cli/blob/main/SECURITY.md
+    about: Do not file security issues here. Email security@stonkagents.com instead.
+  - name: OpenClaw (upstream)
+    url: https://github.com/openclaw/openclaw/issues
+    about: Bugs in shared OpenClaw code that are not specific to the StonkAgents build.

@@ -1,0 +1,63 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Build and test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22]
+    env:
+      # Mirrors the upstream full-suite lane sized for a standard runner.
+      OPENCLAW_VITEST_MAX_WORKERS: 2
+      OPENCLAW_TEST_PROJECTS_LEAF_SHARDS: 1
+      OPENCLAW_TEST_SKIP_FULL_EXTENSIONS_SHARD: 1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        # The version comes from the packageManager field in package.json.
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/pnpm/store
+          key: pnpm-store-${{ runner.os }}-node${{ matrix.node }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            pnpm-store-${{ runner.os }}-node${{ matrix.node }}-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test
+        # The packed-artifact guardrail test runs npm pack over the built tree, which
+        # takes about 50 s on a fast machine and more than the 120 s default on a
+        # standard runner (upstream uses 16 vCPU runners). The flag is forwarded to
+        # vitest for the whole run.
+        run: pnpm test -- --testTimeout=600000

@@ -1,0 +1,29 @@
+{
+  "id": "stonkagents",
+  "enabledByDefault": true,
+  "providers": ["stonkagents"],
+  "providerAuthEnvVars": {
+    "stonkagents": ["STONKAGENTS_API_KEY"]
+  },
+  "providerAuthChoices": [
+    {
+      "provider": "stonkagents",
+      "method": "stonkagents-ai",
+      "choiceId": "stonkagents-ai",
+      "choiceLabel": "StonkAgents AI",
+      "choiceHint": "StonkAgents-managed LLM with included credits",
+      "groupId": "stonkagents",
+      "groupLabel": "StonkAgents AI",
+      "groupHint": "StonkAgents-managed LLM (no external API key required)",
+      "optionKey": "stonkagentsApiKey",
+      "cliFlag": "--stonkagents-api-key",
+      "cliOption": "--stonkagents-api-key <key>",
+      "cliDescription": "StonkAgents API key (from the installer or tracker)"
+    }
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

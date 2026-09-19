@@ -1,0 +1,27 @@
+# Dependabot configuration for the public repository.
+# npm dependencies are updated in the private repository and arrive with the
+# next export; only the Docker base images and the workflow actions are
+# tracked here. src/docker-image-digests.test.ts checks the docker entry.
+
+version: 2
+
+updates:
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      docker-images:
+        patterns:
+          - "*"
+    open-pull-requests-limit: 2
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns:
+          - "*"
+    open-pull-requests-limit: 2
