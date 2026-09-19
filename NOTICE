@@ -1,0 +1,15 @@
+StonkAgents CLI
+Copyright (c) 2026 StonkAgents
+
+This product is a fork of OpenClaw (https://github.com/openclaw/openclaw),
+Copyright (c) 2025 Peter Steinberger, distributed under the MIT License.
+The full license text, including the original copyright notice, is in the
+LICENSE file at the root of this repository and applies to the whole tree.
+
+StonkAgents changes are limited to the StonkAgents provider plugin
+(extensions/stonkagents), the `stonkagents` binary and package-root resolution,
+and small onboarding and CLI adjustments. They are released under the same
+MIT License.
+
+OpenClaw bundles third-party components under their own licenses; see the
+vendor directories and the individual package manifests for details.

@@ -1,0 +1,15 @@
+{
+  "name": "@openclaw/stonkagents-provider",
+  "version": "2026.4.10",
+  "private": true,
+  "description": "StonkAgents AI provider plugin (metered LLM via tracker)",
+  "type": "module",
+  "devDependencies": {
+    "@openclaw/plugin-sdk": "workspace:*"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

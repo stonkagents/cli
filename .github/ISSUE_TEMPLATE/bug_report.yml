@@ -1,0 +1,71 @@
+name: Bug report
+description: Something in the StonkAgents CLI does not work as documented.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Keep answers short and concrete. Redact API keys, gateway tokens and anything else private before pasting.
+        If the problem is in shared OpenClaw behaviour (channels, gateway, agents) and also reproduces with upstream OpenClaw, please file it upstream and link it here.
+  - type: input
+    id: version
+    attributes:
+      label: CLI version
+      description: Output of `stonkagents --version`.
+      placeholder: "2026.9.14"
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How was it installed?
+      options:
+        - StonkAgents installer (.exe / .dmg)
+        - npm install -g stonkagents
+        - From source
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, what you got instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Run `stonkagents onboard ...`
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs and output
+      description: Command output, `stonkagents doctor` output or gateway logs. Redact secrets.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues.
+          required: true
+        - label: I removed API keys, tokens and personal data from the report.
+          required: true
